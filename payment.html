@@ -25,26 +25,27 @@
     </style>
 </head>
 <body>
-    <div class="container border w3-round-xlarge mt-2" style="width: 140vh;">
-        <div class="row   bg-light shadow-sm">
+    <div class="container mt-2" style="width: 140vh">
+        <div class="row border w3-round-xlarge bg-light shadow-sm">
             <div class="col-md-5 d-flex flex-column">
                 <div class="w3-margin w3-padding w3-round-xlarge bg-white shadow-sm">
                     <h2 class="text-primary">Payment Details</h2>
+                </div>
+            </div><span class="col-md-7"></span>
+            <div class="col-md-5 d-flex flex-column align-items-center">
+                <img id="productImage" src="sources/qr.jpg" class="card-img-top enlarge-image mb-auto w3-padding" alt="Product Image" >
             </div>
-            <div class="col-md-5 d-flex flex-column" style="width: 100%; height: auto;">
+            <div class="col-md-7 d-flex flex-column">   
                 <div class="w3-margin w3-padding w3-round-xlarge bg-white shadow-sm">
-                    <img id="productImage" src="sources/qr.jpg" class="card-img-top enlarge-image mb-auto w3-padding" alt="Product Image" >
+                    <p>Scan the QR code to make payment</p>
+                    <p>Amount: RM 3.00</p>
+                    <p>Reference: 123456789</p>
                 </div>
-                <div class="col">
-                    <div class="w3-margin w3-padding w3-round-xlarge bg-white shadow-sm">
-                        <h2 class="text-primary">Payment Details</h2>
-                        <p>Scan the QR code to make payment</p>
-                        <p>Amount: RM 3.00</p>
-                        <p>Reference: 123456789</p>
-                    </div>
-                </div>
-            </div>       
-        </div>
+            </div>
+            <div class="w3-margin col-md-12 d-flex justify-content-center mt-3" style="width:  80vh;">
+                <button class="btn btn-primary">Confirm Payment</button>
+            </div>
+        </div>       
     </div>
 </body>
 </html>
