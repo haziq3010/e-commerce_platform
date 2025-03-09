@@ -56,62 +56,65 @@
                         <p>: 8 Minit</p>
                     </div>
                     <hr>
-                    <p class="text-secondary">Maklumat Pembelian</p>
-                    <p>Pilih Jenis</p>
-                    <div class="row w3-margin-left">
-                        <div class="col-md-6 form-check">
-                            <input class="form-check-input" type="radio" name="cook" id="cook" value="cook" onclick="updateBuyButton()">
-                            <label class="form-check-label" for="cook"> Siap Dimasak (+RM0.50/item)</label>
+                    <form id="orderForm">
+                        <p class="text-secondary">Maklumat Pembelian</p>
+                        <p>Pilih Jenis</p>
+                        <div class="row w3-margin-left">
+                            <div class="col-md-6 form-check">
+                                <input class="form-check-input" type="radio" name="cook" id="cook" value="cook" onclick="updateBuyButton()">
+                                <label class="form-check-label" for="cook"> Siap Dimasak (+RM0.50/item)</label>
+                            </div>
+                            <div class="col-md-6 form-check">
+                                <input class="form-check-input" type="radio" name="cook" id="notcook" value="notcook" checked onclick="updateBuyButton()">
+                                <label class="form-check-label" for="notcook"> Tidak Dimasak</label>
+                            </div>
                         </div>
-                        <div class="col-md-6 form-check">
-                            <input class="form-check-input" type="radio" name="cook" id="notcook" value="notcook" checked onclick="updateBuyButton()">
-                            <label class="form-check-label" for="notcook"> Tidak Dimasak</label>
+                        <hr>
+                        <p>Pilih Penghantaran</p>
+                        <div class="row w3-margin-left">
+                            <div class="col-md-6 form-check">
+                                <input class="form-check-input" type="radio" name="delivery" id="pickup" value="pickup" onclick="updateBuyButton()" checked>
+                                <label class="form-check-label" for="pickup"> Pickup</label>
+                            </div>
+                            <div class="col-md-6 form-check">
+                                <input class="form-check-input" type="radio" name="delivery" id="pickup_sutera" value="pickup_sutera" onclick="updateBuyButton()">
+                                <label class="form-check-label" for="pickup_sutera"> Pickup Sutera</label>
+                            </div>
+                            <div class="col-md-6 form-check">
+                                <input class="form-check-input" type="radio" name="delivery" id="delivery" value="delivery" onclick="updateBuyButton()">
+                                <label class="form-check-label" for="delivery"> Penghantaran</label>
+                            </div>
+                            <div class="col-md-6 form-check">
+                                <input class="form-check-input" type="radio" name="delivery" id="delivery_sutera" value="delivery_sutera" onclick="updateBuyButton()">
+                                <label class="form-check-label" for="delivery_sutera"> Penghantaran Sutera (+RM1/item)</label>
+                            </div>
                         </div>
-                    </div>
-                    <hr>
-                    <p>Pilih Penghantaran</p>
-                    <div class="row w3-margin-left">
-                        <div class="col-md-6 form-check">
-                            <input class="form-check-input" type="radio" name="delivery" id="pickup" value="pickup" onclick="updateBuyButton()" checked>
-                            <label class="form-check-label" for="pickup"> Pickup</label>
+                        <hr>
+                        <p class="text-secondary">Cara Pembayaran<br><small class="w3-margin-left"><i>Jenis pembayaran hanya melalui e-wallet sahaja.</i></small></p>
+                        <div class="row w3-margin-left">
+                            <div class="col-md-6 form-check">
+                                <input class="form-check-input" type="radio" name="payment" id="cash" value="cash" onclick="updateBuyButton()">
+                                <label class="form-check-label" for="cash"> Cash</label>
+                            </div>
+                            <div class="col-md-6 form-check">
+                                <input class="form-check-input" type="radio" name="payment" id="e_wallet" value="e_wallet" onclick="updateBuyButton()" checked>
+                                <label class="form-check-label" for="e_wallet"> E-Wallet</label>
+                            </div>
                         </div>
-                        <div class="col-md-6 form-check">
-                            <input class="form-check-input" type="radio" name="delivery" id="pickup_sutera" value="pickup_sutera" onclick="updateBuyButton()">
-                            <label class="form-check-label" for="pickup_sutera"> Pickup Sutera</label>
+                        <hr>
+                        <div class="row w3-margin-left mt-auto">
+                            <div class="col-md-6 d-flex align-items-center">
+                                <button class="btn btn-outline-secondary" type="button" onclick="decreaseQuantity()">-</button>
+                                <input type="text" id="quantity" value="1" class="form-control text-center mx-2" style="width: 50px;" readonly>
+                                <button class="btn btn-outline-secondary" type="button" onclick="increaseQuantity()">+</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="btn btn-success w-100" style="font-size: 1.3rem;" type="submit" id="buyButton">Beli - RM3</button>
+                            </div><hr>
                         </div>
-                        <div class="col-md-6 form-check">
-                            <input class="form-check-input" type="radio" name="delivery" id="delivery" value="delivery" onclick="updateBuyButton()">
-                            <label class="form-check-label" for="delivery"> Penghantaran</label>
-                        </div>
-                        <div class="col-md-6 form-check">
-                            <input class="form-check-input" type="radio" name="delivery" id="delivery_sutera" value="delivery_sutera" onclick="updateBuyButton()">
-                            <label class="form-check-label" for="delivery_sutera"> Penghantaran Sutera (+RM1/item)</label>
-                        </div>
-                    </div>
-                    <hr>
-                    <p class="text-secondary">Cara Pembayaran<br><small class="w3-margin-left"><i>Jenis pembayaran hanya melalui e-wallet sahaja.</i></small></p>
-                    <div class="row w3-margin-left">
-                        <div class="col-md-6 form-check">
-                            <input class="form-check-input" type="radio" name="payment" id="cash" value="cash" onclick="updateBuyButton()">
-                            <label class="form-check-label" for="cash"> Cash</label>
-                        </div>
-                        <div class="col-md-6 form-check">
-                            <input class="form-check-input" type="radio" name="payment" id="e_wallet" value="e_wallet" onclick="updateBuyButton()" checked>
-                            <label class="form-check-label" for="e_wallet"> E-Wallet</label>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row w3-margin-left mt-auto">
-                        <div class="col-md-6 d-flex align-items-center">
-                            <button class="btn btn-outline-secondary" type="button" onclick="decreaseQuantity()">-</button>
-                            <input type="text" id="quantity" value="1" class="form-control text-center mx-2" style="width: 50px;" readonly>
-                            <button class="btn btn-outline-secondary" type="button" onclick="increaseQuantity()">+</button>
-                        </div>
-                        <div class="col-md-6">
-                            <button class="btn btn-success w-100" style="font-size: 1.3rem;" type="button" id="buyButton">Beli - RM3</button>
-                        </div><hr>
-                    </div>
+                    </form>
                     <script>
+                        //quantity 
                         const pricePerItem = 3;
 
                         function updateBuyButton() {
@@ -153,5 +156,6 @@
             </div>
         </div>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
