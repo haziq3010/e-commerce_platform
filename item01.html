@@ -57,6 +57,18 @@
                     </div>
                     <hr>
                     <form id="orderForm">
+                        <input type="hidden" id="productName" value="Nasi Segera (Nasi Lemak)">
+                        <input type="hidden" id="productPrice" value="3">
+                        <p class="text-secondary">Maklumat Peribadi</p>
+                        <div class="row w3-margin-left mb-3">
+                            <div class="col-12 mb-2">
+                                <input type="text" class="form-control" id="customerName" placeholder="Nama">
+                            </div>
+                            <div class="col-12">
+                                <input type="tel" class="form-control" id="phoneNumber" placeholder="No. Telefon">
+                            </div>
+                        </div>
+                        <hr>
                         <p class="text-secondary">Maklumat Pembelian</p>
                         <p>Pilih Jenis</p>
                         <div class="row w3-margin-left">
@@ -65,7 +77,7 @@
                                 <label class="form-check-label" for="cook"> Siap Dimasak (+RM0.50/item)</label>
                             </div>
                             <div class="col-md-6 form-check">
-                                <input class="form-check-input" type="radio" name="cook" id="notcook" value="notcook" checked onclick="updateBuyButton()">
+                                <input class="form-check-input" type="radio" name="cook" id="cook" value="notcook" checked onclick="updateBuyButton()">
                                 <label class="form-check-label" for="notcook"> Tidak Dimasak</label>
                             </div>
                         </div>
@@ -73,31 +85,45 @@
                         <p>Pilih Penghantaran</p>
                         <div class="row w3-margin-left">
                             <div class="col-md-6 form-check">
-                                <input class="form-check-input" type="radio" name="delivery" id="pickup" value="pickup" onclick="updateBuyButton()" checked>
+                                <input class="form-check-input" type="radio" name="delivery" id="pickup" value="pickup" onclick="updateBuyButton(); toggleRoomNumber()" checked>
                                 <label class="form-check-label" for="pickup"> Pickup</label>
                             </div>
                             <div class="col-md-6 form-check">
-                                <input class="form-check-input" type="radio" name="delivery" id="pickup_sutera" value="pickup_sutera" onclick="updateBuyButton()">
+                                <input class="form-check-input" type="radio" name="delivery" id="pickup" value="pickup_sutera" onclick="updateBuyButton(); toggleRoomNumber()">
                                 <label class="form-check-label" for="pickup_sutera"> Pickup Sutera</label>
                             </div>
                             <div class="col-md-6 form-check">
-                                <input class="form-check-input" type="radio" name="delivery" id="delivery" value="delivery" onclick="updateBuyButton()">
+                                <input class="form-check-input" type="radio" name="delivery" id="pickup" value="delivery" onclick="updateBuyButton(); toggleRoomNumber()">
                                 <label class="form-check-label" for="delivery"> Penghantaran</label>
                             </div>
                             <div class="col-md-6 form-check">
-                                <input class="form-check-input" type="radio" name="delivery" id="delivery_sutera" value="delivery_sutera" onclick="updateBuyButton()">
+                                <input class="form-check-input" type="radio" name="delivery" id="pickup" value="delivery_sutera" onclick="updateBuyButton(); toggleRoomNumber()">
                                 <label class="form-check-label" for="delivery_sutera"> Penghantaran Sutera (+RM1/item)</label>
                             </div>
+                            <div id="roomNumberDiv" class="col-12 mt-2" style="display: none;">
+                                <input type="text" class="form-control" id="roomNumber" style="width: 150px;" placeholder="Room Number">
+                            </div>
                         </div>
+                        <script>
+                            function toggleRoomNumber() {
+                                var deliveryType = document.querySelector('input[name="delivery"]:checked').value;
+                                var roomNumberDiv = document.getElementById('roomNumberDiv');
+                                if (deliveryType === 'delivery' || deliveryType === 'delivery_sutera') {
+                                    roomNumberDiv.style.display = 'block';
+                                } else {
+                                    roomNumberDiv.style.display = 'none';
+                                }
+                            }
+                        </script>
                         <hr>
                         <p class="text-secondary">Cara Pembayaran<br><small class="w3-margin-left"><i>Jenis pembayaran hanya melalui e-wallet sahaja.</i></small></p>
                         <div class="row w3-margin-left">
                             <div class="col-md-6 form-check">
-                                <input class="form-check-input" type="radio" name="payment" id="cash" value="cash" onclick="updateBuyButton()">
+                                <input class="form-check-input" type="radio" name="payment" id="payment" value="cash" onclick="updateBuyButton()">
                                 <label class="form-check-label" for="cash"> Cash</label>
                             </div>
                             <div class="col-md-6 form-check">
-                                <input class="form-check-input" type="radio" name="payment" id="e_wallet" value="e_wallet" onclick="updateBuyButton()" checked>
+                                <input class="form-check-input" type="radio" name="payment" id="payment" value="e_wallet" onclick="updateBuyButton()" checked>
                                 <label class="form-check-label" for="e_wallet"> E-Wallet</label>
                             </div>
                         </div>
@@ -108,9 +134,9 @@
                                 <input type="text" id="quantity" value="1" class="form-control text-center mx-2" style="width: 50px;" readonly>
                                 <button class="btn btn-outline-secondary" type="button" onclick="increaseQuantity()">+</button>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 mt-2">
                                 <button class="btn btn-success w-100" style="font-size: 1.3rem;" type="submit" id="buyButton">Beli - RM3</button>
-                            </div><hr>
+                            </div><hr><div class="w3-panel w3-pale-red w3-leftbar w3-border-red" id="w3-message"></div>
                         </div>
                     </form>
                     <script>
@@ -156,6 +182,6 @@
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
