@@ -57,15 +57,15 @@
                     </div>
                     <hr>
                     <form id="orderForm">
-                        <input type="hidden" id="productName" value="Nasi Segera (Nasi Lemak)">
-                        <input type="hidden" id="productPrice" value="3">
+                        <input type="text" id="productName" value="Nasi Segera (Nasi Lemak)" hidden>
+                        <input type="text" id="productPrice" value="3" hidden>
                         <p class="text-secondary">Maklumat Peribadi</p>
                         <div class="row w3-margin-left mb-3">
                             <div class="col-12 mb-2">
-                                <input type="text" class="form-control" id="customerName" placeholder="Nama">
+                                <input type="text" class="form-control" id="customerName" placeholder="Nama" required>
                             </div>
                             <div class="col-12">
-                                <input type="tel" class="form-control" id="phoneNumber" placeholder="No. Telefon">
+                                <input type="tel" class="form-control" id="phoneNumber" placeholder="No. Telefon" required>
                             </div>
                         </div>
                         <hr>
@@ -104,17 +104,7 @@
                                 <input type="text" class="form-control" id="roomNumber" style="width: 150px;" placeholder="Room Number">
                             </div>
                         </div>
-                        <script>
-                            function toggleRoomNumber() {
-                                var deliveryType = document.querySelector('input[name="delivery"]:checked').value;
-                                var roomNumberDiv = document.getElementById('roomNumberDiv');
-                                if (deliveryType === 'delivery' || deliveryType === 'delivery_sutera') {
-                                    roomNumberDiv.style.display = 'block';
-                                } else {
-                                    roomNumberDiv.style.display = 'none';
-                                }
-                            }
-                        </script>
+                        
                         <hr>
                         <p class="text-secondary">Cara Pembayaran<br><small class="w3-margin-left"><i>Jenis pembayaran hanya melalui e-wallet sahaja.</i></small></p>
                         <div class="row w3-margin-left">
@@ -136,9 +126,10 @@
                             </div>
                             <div class="col-md-6 mt-2">
                                 <button class="btn btn-success w-100" style="font-size: 1.3rem;" type="submit" id="buyButton">Beli - RM3</button>
-                            </div><hr><div class="w3-panel w3-pale-red w3-leftbar w3-border-red" id="w3-message"></div>
+                            </div><hr><div class="w3-panel w3-pale-red w3-leftbar w3-border-red" id="message"></div>
                         </div>
                     </form>
+                    
                     <script>
                         //quantity 
                         const pricePerItem = 3;
@@ -147,7 +138,7 @@
                             var quantity = document.getElementById('quantity').value;
                             var cookType = document.querySelector('input[name="cook"]:checked').value;
                             var deliveryType = document.querySelector('input[name="delivery"]:checked').value;
-
+                            message.innerHTML = document.getElementById('phoneNumber').value;
                             var additionalCost = 0;
                             if (cookType === 'cook') {
                                 additionalCost += 0.5;
@@ -177,6 +168,17 @@
 
                         // Initialize the button text on page load
                         updateBuyButton();
+
+                        function toggleRoomNumber() {
+                                var deliveryType = document.querySelector('input[name="delivery"]:checked').value;
+                                var roomNumberDiv = document.getElementById('roomNumberDiv');
+                                if (deliveryType === 'delivery' || deliveryType === 'delivery_sutera') {
+                                    roomNumberDiv.style.display = 'block';
+                                } else {
+                                    roomNumberDiv.style.display = 'none';
+                                }
+                            }
+                        
                     </script>
                 </div>
             </div>
