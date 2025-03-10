@@ -1,5 +1,4 @@
-const PRICES = { Coffee: 3, Tea: 2, Smoothie: 5 };
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby2Kz6Rm3gIdFOjw7YkhrYcX4vflcg8yNl9hiBkPPU6OxjfUMC9ilhHsn8BBvUHFUU/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyaO4B6SptuLKknCkW-TSAcXimfjMq6FyvuAOV-xVO0c-nsSySwc0TtrZLyiEQuiWpK/exec';
 
 document.getElementById('orderForm').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -7,14 +6,14 @@ document.getElementById('orderForm').addEventListener('submit', async (e) => {
     const roomNumber = document.getElementById('roomNumber').value;
     const orderData = {
         name: document.getElementById('customerName').value,
-        phone: document.getElementById('phoneNumber').value,
+        phoneNumber: document.getElementById('phoneNumber').value,
         item: document.getElementById('productName').value,
         quantity: document.getElementById('quantity').value,
+        total: calculateTotal(),
         cook: document.querySelector('input[name="cook"]:checked').value,
         deliveryType: document.querySelector('input[name="delivery"]:checked').value,
         paymentType: document.querySelector('input[name="payment"]:checked').value,
         room: roomNumber.trim() === '' ? 'None' : roomNumber,
-        total: calculateTotal(),
         action: 'placeOrder'
     };
 
@@ -32,7 +31,7 @@ try {
 });
 
 function calculateTotal() {
-const item = document.getElementById('productPrice').value;
-const quantity = document.getElementById('quantity').value;
-return item * quantity;
+    const item = document.getElementById('productPrice').value;
+    const quantity = document.getElementById('quantity').value;
+    return item * quantity;
 }
