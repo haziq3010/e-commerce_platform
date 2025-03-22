@@ -9,24 +9,243 @@
     
     <title>E-commerce Platform</title>
     <style>
-        .container {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            background-image: url('image.png');
-            background-size: cover;
-            background-position: center;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
         }
-        .back-button-middle {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        
+        body {
+            background-color: #f7f7f7;
+            min-height: 100vh;
+            padding: 20px;
         }
+        
         .back-button-top-left {
+            background-color: white;
+            color: #333;
+            padding: 8px 15px;
+            margin-bottom: 15px;
+            display: inline-block;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button-top-left:hover {
+            background-color: #e74c3c;
+            color: white;
+            transform: translateX(-5px);
+        }
+        
+        .main-container {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .main-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .product-image-container {
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+        }
+        
+        .enlarge-image {
+            transform-origin: center;
+            transition: transform 0.3s ease;
+            width: 100%;
+            height: auto;
+            margin-top: -40px;
+        }
+        
+        .enlarge-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .thumbnail-container {
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .img-thumbnail {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 10px;
+        }
+        
+        .img-thumbnail:hover {
+            transform: scale(1.1);
+            border-color: #e74c3c;
+        }
+        
+        .product-details-container {
+            padding: 20px;
+        }
+        
+        .product-title {
+            background-color: white;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #e74c3c;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .product-title:hover {
+            transform: translateY(-3px);
+        }
+        
+        .details-section {
+            background-color: white;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-title {
+            color: #777;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .form-control {
+            border-radius: 10px;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: #e74c3c;
+            box-shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.25);
+        }
+        
+        .form-check-input {
+            cursor: pointer;
+        }
+        
+        .form-check-input:checked {
+            background-color: #e74c3c;
+            border-color: #e74c3c;
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+        }
+        
+        .quantity-btn {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+        
+        .quantity-btn:hover {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        #quantity {
+            width: 60px;
+            height: 40px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+        
+        .buy-btn {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-weight: bold;
+        }
+        
+        .buy-btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        hr {
+            border-top: 1px solid #eee;
+            margin: 15px 0;
+        }
+        /* Popup styles */
+        .success-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Confetti styles */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1001;
+            pointer-events: none;
+        }
+
+        .confetti {
             position: absolute;
-            top: 20px;
-            left: 20px;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            top: -10px;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+        to {
+            transform: translateY(100vh) rotate(720deg);
+            opacity: 0;
+        }
         }
     </style>
 
@@ -41,174 +260,141 @@
 
 </head>
 <body>
-    <div class="container mt-2" style="width: 140vh">
-        <a href="index.html" class="btn back-button-top-left border w3-hover shadow-sm w3-round-large" style="font-size: 1.1rem;">
-            <i class="bi bi-chevron-left" style=""></i>Kembali
+   
+
+    
+    <div class="container mt-2" style="max-width: 1000px;">
+        <a href="index.html" class="back-button-top-left">
+            <i class="bi bi-chevron-left"></i> Kembali
         </a>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
-        <div class="row border w3-round-xlarge bg-light shadow-sm">
-            <div class="col-md-5 d-flex flex-column align-items-center">
-                <img id="productImage" src="sources/nasilemak.png" class="card-img-top enlarge-image mb-auto w3-padding" alt="Product Image" style="width: 110%; height: auto;">
-                <div class="row mt-3 w-100">
-                    <div class="col">
-                        <img src="sources/nasilemak.png" class="img-thumbnail w-60" width="130" onclick="changeImage('sources/nasilemak.png')" alt="Image 1">
+        
+        <div class="main-container">
+            <div class="row mt-2">
+                <div class="col-md-5 product-image-container">
+                    <img id="productImage" class="enlarge-image" alt="Product Image">
+                    <div class="thumbnail-container row mt-4">
+                        <div class="col">
+                            <img id="smallimage" class="img-thumbnail" width="130" onclick="changeImage('back')" alt="Image 1">
+                        </div>
+                        <div class="col">
+                            <img src="sources/nutrisinasilemak.webp" class="img-thumbnail" width="130" onclick="changeImage('sources/nutrisinasilemak.webp')" alt="Image 2">
+                        </div>
+                        <div class="col">
+                            <img src="sources/caramemasak.webp" class="img-thumbnail" width="130" onclick="changeImage('sources/caramemasak.webp')" alt="Image 3">
+                        </div>
                     </div>
-                    <div class="col">
-                        <img src="sources/nutrisinasilemak.webp" class="img-thumbnail w-60" width="130" onclick="changeImage('sources/nutrisinasilemak.webp')" alt="Image 2">
-                    </div>
-                    <div class="col">
-                        <img src="sources/caramemasak.webp" class="img-thumbnail w-60" width="130" onclick="changeImage('sources/caramemasak.webp')" alt="Image 2">
-                    </div>
-                    <script>
-                        function changeImage(imageSrc) {
-                            document.getElementById('productImage').src = imageSrc;
-                        }
-                    </script>
-                </div><br>
-            </div>
-            <div class="col-md-7">
-                <div class="border w3-margin w3-padding w3-round-xlarge bg-white shadow-sm">
-                    <h2 class="text-primary">Nasi Segera (Nasi Lemak)</h2>
                 </div>
-                <div class="border w3-margin w3-padding w3-round-xlarge row bg-white shadow-sm"><hr>
-                    <p class="text-secondary">Maklumat Pemakanan</p>
-                    <div class="col-md-4">
-                        <p>Saiz Hidangan</p>
-                        <p>Masa Hidangan</p>
+                
+                <div class="col-md-7 product-details-container">
+                    <div class="product-title">
+                        <h2 id="main-name">Unknown Item</h2>
                     </div>
-                    <div class="col-md-8">
-                        <p>: 90g</p>
-                        <p>: 8 Minit</p>
-                    </div>
-                    <hr>
-                    <form id="orderForm">
-                        <input type="text" id="productName" value="Nasi Segera (Nasi Lemak)" hidden>
-                        <input type="text" id="productPrice" value="3" hidden>
-                        <p class="text-secondary">Maklumat Peribadi</p>
-                        <div class="row w3-margin-left mb-3">
-                            <div class="col-12 mb-2">
-                                <input type="text" class="form-control" id="customerName" placeholder="Nama" required>
-                            </div>
-                            <div class="col-12">
-                                <input type="tel" class="form-control" id="phoneNumber" placeholder="No. Telefon" required>
-                            </div>
-                        </div>
-                        <hr>
-                        <p class="text-secondary">Maklumat Pembelian</p>
-                        <p>Pilih Jenis</p>
-                        <div class="row w3-margin-left">
-                            <div class="col-md-6 form-check">
-                                <input class="form-check-input" type="radio" name="cook" id="cook" value="cook" onclick="updateBuyButton()">
-                                <label class="form-check-label" for="cook"> Siap Dimasak (+RM0.50/item)</label>
-                            </div>
-                            <div class="col-md-6 form-check">
-                                <input class="form-check-input" type="radio" name="cook" id="cook" value="notcook" checked onclick="updateBuyButton()">
-                                <label class="form-check-label" for="notcook"> Tidak Dimasak</label>
-                            </div>
-                        </div>
-                        <hr>
-                        <p>Pilih Penghantaran</p>
-                        <div class="row w3-margin-left">
-                            <div class="col-md-6 form-check">
-                                <input class="form-check-input" type="radio" name="delivery" id="pickup" value="pickup" onclick="updateBuyButton(); toggleRoomNumber()" checked>
-                                <label class="form-check-label" for="pickup"> Pickup</label>
-                            </div>
-                            <div class="col-md-6 form-check">
-                                <input class="form-check-input" type="radio" name="delivery" id="pickup" value="pickup_sutera" onclick="updateBuyButton(); toggleRoomNumber()">
-                                <label class="form-check-label" for="pickup_sutera"> Pickup Sutera</label>
-                            </div>
-                            <div class="col-md-6 form-check">
-                                <input class="form-check-input" type="radio" name="delivery" id="pickup" value="delivery" onclick="updateBuyButton(); toggleRoomNumber()">
-                                <label class="form-check-label" for="delivery"> Penghantaran</label>
-                            </div>
-                            <div class="col-md-6 form-check">
-                                <input class="form-check-input" type="radio" name="delivery" id="pickup" value="delivery_sutera" onclick="updateBuyButton(); toggleRoomNumber()">
-                                <label class="form-check-label" for="delivery_sutera"> Penghantaran Sutera (+RM1/item)</label>
-                            </div>
-                            <div id="roomNumberDiv" class="col-12 mt-2" style="display: none;">
-                                <input type="text" class="form-control" id="roomNumber" style="width: 150px;" placeholder="Room Number">
-                            </div>
-                        </div>
-                        
-                        <hr>
-                        <p class="text-secondary">Cara Pembayaran<br><small class="w3-margin-left"><i>Jenis pembayaran hanya melalui e-wallet sahaja.</i></small></p>
-                        <div class="row w3-margin-left">
-                            <div class="col-md-6 form-check">
-                                <input class="form-check-input" type="radio" name="payment" id="payment" value="cash" onclick="updateBuyButton()">
-                                <label class="form-check-label" for="cash"> Cash</label>
-                            </div>
-                            <div class="col-md-6 form-check">
-                                <input class="form-check-input" type="radio" name="payment" id="payment" value="e_wallet" onclick="updateBuyButton()" checked>
-                                <label class="form-check-label" for="e_wallet"> E-Wallet</label>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row w3-margin-left mt-auto">
-                            <div class="col-md-6 d-flex align-items-center">
-                                <button class="btn btn-outline-secondary" type="button" onclick="decreaseQuantity()">-</button>
-                                <input type="text" id="quantity" value="1" class="form-control text-center mx-2" style="width: 50px;" readonly>
-                                <button class="btn btn-outline-secondary" type="button" onclick="increaseQuantity()">+</button>
-                            </div>
-                            <div class="col-md-6 mt-2">
-                                <button class="btn btn-success w-100" style="font-size: 1.3rem;" type="submit" id="buyButton">Beli - RM3</button>
-                            </div><hr><div class="w3-panel w3-pale-red w3-leftbar w3-border-red" id="message"></div>
-                        </div>
-                    </form>
                     
-                    <script>
-                        //quantity 
-                        const pricePerItem = 3;
-
-                        function updateBuyButton() {
-                            var quantity = document.getElementById('quantity').value;
-                            var cookType = document.querySelector('input[name="cook"]:checked').value;
-                            var deliveryType = document.querySelector('input[name="delivery"]:checked').value;
-                            message.innerHTML = document.getElementById('phoneNumber').value;
-                            var additionalCost = 0;
-                            if (cookType === 'cook') {
-                                additionalCost += 0.5;
-                            }
-                            if (deliveryType === 'delivery_sutera') {
-                                additionalCost += 1;
-                            }
-
-                            var totalPrice = (parseFloat(pricePerItem) + additionalCost) * quantity;
-                            var buyButton = document.getElementById('buyButton');
-                            buyButton.innerHTML = `Beli - RM${totalPrice.toFixed(2)}`;
-                        }
-
-                        function increaseQuantity() {
-                            var quantity = document.getElementById('quantity');
-                            quantity.value = parseInt(quantity.value) + 1;
-                            updateBuyButton();
-                        }
-
-                        function decreaseQuantity() {
-                            var quantity = document.getElementById('quantity');
-                            if (quantity.value > 1) {
-                                quantity.value = parseInt(quantity.value) - 1;
-                                updateBuyButton();
-                            }
-                        }
-
-                        // Initialize the button text on page load
-                        updateBuyButton();
-
-                        function toggleRoomNumber() {
-                                var deliveryType = document.querySelector('input[name="delivery"]:checked').value;
-                                var roomNumberDiv = document.getElementById('roomNumberDiv');
-                                if (deliveryType === 'delivery' || deliveryType === 'delivery_sutera') {
-                                    roomNumberDiv.style.display = 'block';
-                                } else {
-                                    roomNumberDiv.style.display = 'none';
-                                }
-                            }
+                    <div class="details-section">
+                        <p class="section-title">Maklumat Pemakanan</p>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>Saiz Hidangan</p>
+                                <p>Masa Hidangan</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p id="weight"> ???? </p>
+                                <p>8 Minit</p>
+                            </div>
+                        </div>
                         
-                    </script>
+                        <hr>
+                        
+                        <form id="orderForm">
+                            <input type="text" id="productName" hidden>
+                            <input type="text" id="productPrice" hidden>
+                            
+                            <p class="section-title">Maklumat Peribadi</p>
+                            <div class="row mb-3">
+                                <div class="col-12 mb-2">
+                                    <input type="text" class="form-control" id="customerName" placeholder="Nama" required>
+                                </div>
+                                <div class="col-12">
+                                    <input type="tel" class="form-control" id="phoneNumber" placeholder="No. Telefon" required>
+                                </div>
+                            </div>
+                            
+                            <hr>
+                            
+                            <p class="section-title">Maklumat Pembelian</p>
+                            <p>Pilih Jenis</p>
+                            <div class="row mb-3 w3-margin-left">
+                                <div class="col-md-6 form-check">
+                                    <input class="form-check-input" type="radio" name="cook" id="cookYes" value="cook" onclick="updateBuyButton()">
+                                    <label class="form-check-label" for="cookYes"> Siap Dimasak (+RM0.50/item)</label>
+                                </div>
+                                <div class="col-md-6 form-check">
+                                    <input class="form-check-input" type="radio" name="cook" id="cookNo" value="notcook" checked onclick="updateBuyButton()">
+                                    <label class="form-check-label" for="cookNo"> Tidak Dimasak</label>
+                                </div>
+                            </div>
+                            
+                            <hr>
+                            
+                            <p>Pilih Penghantaran</p>
+                            <div class="row mb-3 w3-margin-left">
+                                <div class="col-md-6 form-check">
+                                    <input class="form-check-input" type="radio" name="delivery" id="pickupStandard" value="pickup" onclick="updateBuyButton(); toggleRoomNumber()" checked>
+                                    <label class="form-check-label" for="pickupStandard"> Pickup</label>
+                                </div>
+                                <div class="col-md-6 form-check">
+                                    <input class="form-check-input" type="radio" name="delivery" id="pickupSutera" value="pickup_sutera" onclick="updateBuyButton(); toggleRoomNumber()">
+                                    <label class="form-check-label" for="pickupSutera"> Pickup Sutera</label>
+                                </div>
+                                <div class="col-md-6 form-check">
+                                    <input class="form-check-input" type="radio" name="delivery" id="deliveryStandard" value="delivery" onclick="updateBuyButton(); toggleRoomNumber()">
+                                    <label class="form-check-label" for="deliveryStandard"> Penghantaran</label>
+                                </div>
+                                <div class="col-md-6 form-check">
+                                    <input class="form-check-input" type="radio" name="delivery" id="deliverySutera" value="delivery_sutera" onclick="updateBuyButton(); toggleRoomNumber()">
+                                    <label class="form-check-label" for="deliverySutera"> Penghantaran Sutera (+RM1/item)</label>
+                                </div>
+                                <div id="roomNumberDiv" class="col-12 mt-2" style="display: none;">
+                                    <input type="text" class="form-control" id="roomNumber" placeholder="Room Number">
+                                </div>
+                            </div>
+                            
+                            <hr>
+                            
+                            <p class="section-title">Cara Pembayaran<br><small><i>Jenis pembayaran hanya melalui e-wallet sahaja.</i></small></p>
+                            <div class="row mb-3 w3-margin-left">
+                                <div class="col-md-6 form-check">
+                                    <input class="form-check-input" type="radio" name="payment" id="paymentCash" value="cash" onclick="updateBuyButton()">
+                                    <label class="form-check-label" for="paymentCash"> Cash</label>
+                                </div>
+                                <div class="col-md-6 form-check">
+                                    <input class="form-check-input" type="radio" name="payment" id="paymentEWallet" value="e_wallet" onclick="updateBuyButton()" checked>
+                                    <label class="form-check-label" for="paymentEWallet"> E-Wallet</label>
+                                </div>
+                            </div>
+                            
+                            <hr>
+                            
+                            <div class="row">
+                                <div class="col-md-6 quantity-control">
+                                    <button class="quantity-btn" type="button" onclick="decreaseQuantity()">-</button>
+                                    <input type="text" id="quantity" value="1" class="form-control text-center" readonly>
+                                    <button class="quantity-btn" type="button" onclick="increaseQuantity()">+</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="buy-btn" type="submit" id="buyButton">Beli - RM5.15</button>
+                                </div>
+                            </div>
+                            
+                            <div class="w3-panel w3-pale-red w3-leftbar w3-border-red mt-3" id="message" style="">Error Testing</div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+                
+                
     <script src="js/script.js"></script>
 </body>
 </html>

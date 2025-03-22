@@ -22,10 +22,152 @@
         button{
             width: 100%;
         }
+        a {
+            text-decoration: none;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+       
+        .menu-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+        }
+        
+        .menu-item {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            width: 250px;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding-top: 140px; /* Space for the image */
+            margin-top: 140px; /* Offset for the image */
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .burger-image-container {
+            position: absolute;
+            top: -140px;
+            left: 0;
+            width: 100%;
+            height: 280px;
+            display: flex;
+            justify-content: center;
+            overflow: visible;
+        }
+        
+        .burger-image {
+            width: 350px;
+            height: 350px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .drink-image-container {
+            position: absolute;
+            top: -140px;
+            left: 0;
+            width: 100%;
+            height: 280px;
+            display: flex;
+            justify-content: center;
+            overflow: visible;
+        }
+        
+        .drink-image {
+            width: 300px;
+            height: 300px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        
+        .menu-item:hover .burger-image {
+            transform: translateY(-10px);
+        }
+        
+        .burger-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .burger-price {
+            color: #e74c3c;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .burger-description {
+            color: #666;
+            font-size: 12px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        
+        .add-button {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        
+        .add-button:hover {
+            background-color: #c0392b;
+            transform: translateX(-50%) scale(1.1);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            .menu-item {
+                width: calc(33.33% - 30px);
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .menu-item {
+                width: calc(50% - 30px);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .menu-item {
+                width: 100%;
+            }
+        }
+    
     </style>
 </head>
+
 <body>
-    <div class="body container mt-4" style="width: 140vh;">
+    
+    <div class="body container mt-4 bg-light" style="width: 140vh;">
+
         <!-- Nav tabs -->
         <ul class="nav nav-tabs justify-content-center" id="productTabs" role="tablist" style="font-size: 1.2rem;">
             <li class="nav-item" role="presentation">
@@ -40,110 +182,168 @@
         <div class="tab-content" id="productTabContent">
             <!-- Food Tab -->
             <div class="tab-pane fade show active" id="food" role="tabpanel">
-            <div class="row mt-4">
-                <div class="col-md-3 mb-4">
-                <a href="item01.html" class="card shadow-sm text-decoration-none text-dark w3-round-xxlarge">
-                    <img src="sources/nasilemak.png" class="card-img-top enlarge-image" alt="Product Image">
-                    <small class="w3-padding w3-display-right text-muted">90g</small>
-                    <div class="card-body">
-                        <h6 class="card-title">Nasi Segera (Nasi Lemak)</h6>
-                        <small class="text-muted" style="font-size: 0.9rem;">RM 3.00</small>
-                    </div>
-                </a>
-                </div>
-                <!-- Add other food items here --> 
-                    <div class="col-md-3 mb-4">
-                        <a href="item02.html" class="card shadow-sm text-decoration-none text-dark w3-round-xxlarge">
-                            <img src="sources/nasikari.png" class="card-img-top enlarge-image" alt="Product Image">
+                <div class="row mt-4">
+                    <div class="menu-container">
+                        <div class="menu-item"><a type="submit">
+                            <div class="burger-image-container">
+                                <img src="sources/nasilemak.png" alt="" class="burger-image card-img-top">
+                            </div>
                             <small class="w3-padding w3-display-right text-muted">90g</small>
-                            <div class="card-body">
-                                <h6 class="card-title">Nasi Segera (Kari Ayam)</h6>
-                                <small class="text-muted" style="font-size: 0.9rem;">RM 3.00</small>
+                            <form method="get" action="item01.html">
+                                <input type="hidden" name="item" value="Nasi Segera (Nasi Lemak)" >
+                                <input type="hidden" name="price" value="3.50" >
+                                <input type="hidden" name="image" value="sources/nasilemak.png" >
+                                <input type="hidden" name="weight" value="90g" >
+                                <h2 class="burger-title">Nasi Segera<br>(Nasi Lemak)</h2>
+                                <p class="burger-price">RM 3.50</p>
+                                <p class="burger-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p></a>
+                                <button type="submit" class="add-button">+</button></form>
+                        </div>
+                        
+                        <div class="menu-item"><a type="submit"></a>
+                            <div class="burger-image-container">
+                                <img src="sources/nasikari.png" alt="Beef Burger" class="burger-image">
                             </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3 mb-4">
-                        <a href="item03.html" class="card shadow-sm text-decoration-none text-dark w3-round-xxlarge">
-                            <img src="sources/nasiasam.png" class="card-img-top enlarge-image" alt="Product Image">
                             <small class="w3-padding w3-display-right text-muted">90g</small>
-                            <div class="card-body">
-                                <h6 class="card-title">Nasi Segera (Asam Pedas)</h6>
-                                <small class="text-muted" style="font-size: 0.9rem;">RM 3.00</small>
+                            <form method="get" action="item01.html">
+                                <input type="hidden" name="item" value="Nasi Segera (Kari Ayam)" >
+                                <input type="hidden" name="price" value="3.50" >
+                                <input type="hidden" name="image" value="sources/nasikari.png" >
+                                <input type="hidden" name="weight" value="90g" >
+                                <h2 class="burger-title">Nasi Segera<br>(Kari Ayam)</h2>
+                                <p class="burger-price">RM 3.50</p>
+                                <p class="burger-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p></a>
+                                <button type="submit" class="add-button">+</button></form>
+                        </div>
+
+                        <div class="menu-item"><a type="submit">
+                            <div class="burger-image-container">
+                                <img src="sources/nasiasam.png" alt="Beef Burger" class="burger-image">
                             </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3 mb-4">
-                        <a href="item04.html" class="card shadow-sm text-decoration-none text-dark w3-round-xxlarge">
-                            <img src="sources/buburudang.png" class="card-img-top enlarge-image" alt="Product Image">
+                            <small class="w3-padding w3-display-right text-muted">90g</small>
+                            <form method="get" action="item01.html">
+                                <input type="hidden" name="item" value="Nasi Segera (Asam Pedas)" >
+                                <input type="hidden" name="price" value="3.50" >
+                                <input type="hidden" name="image" value="sources/nasiasam.png" >
+                                <input type="hidden" name="weight" value="90g" >
+                                <h2 class="burger-title">Nasi Segera<br>(Asam Pedas)</h2>
+                                <p class="burger-price">RM 3.50</p>
+                                <p class="burger-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p></a>
+                                <button type="submit" class="add-button">+</button></form>
+                        </div>
+
+                        <div class="menu-item"><a type="submit">
+                            <div class="burger-image-container">
+                                <img src="sources/buburudang.png" alt="Beef Burger" class="burger-image">
+                            </div>
                             <small class="w3-padding w3-display-right text-muted">40g</small>
-                            <div class="card-body">
-                                <h6 class="card-title">Bubur Udang</h6>
-                                <small class="text-muted" style="font-size: 0.9rem;">RM 3.00</small>
+                            <form method="get" action="item01.html">
+                                <input type="hidden" name="item" value="Bubur Udang" >
+                                <input type="hidden" name="price" value="3.50" >
+                                <input type="hidden" name="image" value="sources/buburudang.png" >
+                                <input type="hidden" name="weight" value="40g" >
+                                <h2 class="burger-title">Bubur Udang</h2>
+                                <p class="burger-price">RM 3.50</p>
+                                <p class="burger-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p></a>
+                                <button type="submit" class="add-button">+</button></form>
+                        </div>
+
+                        <div class="menu-item"><a type="submit">
+                            <div class="burger-image-container">
+                                <img src="sources/buburcendawan.png" alt="Beef Burger" class="burger-image">
                             </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="row mt-1">
-                    <div class="col-md-3 mb-4">
-                        <a href="item05.html" class="card shadow-sm text-decoration-none text-dark w3-round-xxlarge">
-                            <img src="sources/buburcendawan.png" class="card-img-top enlarge-image" alt="Product Image">
                             <small class="w3-padding w3-display-right text-muted">40g</small>
-                            <div class="card-body ">
-                                <h6 class="card-title">Bubur Cendawan</h6>
-                                <small class="text-muted" style="font-size: 0.9rem;">RM 3.00</small>
+                            <form method="get" action="item01.html">
+                                <input type="hidden" name="item" value="Bubur Cendawan" >
+                                <input type="hidden" name="price" value="3.50" >
+                                <input type="hidden" name="image" value="sources/buburcendawan.png" >
+                                <input type="hidden" name="weight" value="40g" >
+                                <h2 class="burger-title">Bubur Cendawan</h2>
+                                <p class="burger-price">RM 3.50</p>
+                                <p class="burger-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p></a>
+                                <button type="submit" class="add-button">+</button></form>
+                        </div>
+
+                        <div class="menu-item"><a type="submit">
+                            <div class="burger-image-container">
+                                <img src="sources/buburayam.png" alt="Beef Burger" class="burger-image">
                             </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3 mb-4">
-                        <a href="item06.html" class="card shadow-sm text-decoration-none text-dark w3-round-xxlarge">
-                            <img src="sources/buburbilis.png" class="card-img-top enlarge-image" alt="Product Image">
                             <small class="w3-padding w3-display-right text-muted">40g</small>
-                            <div class="card-body">
-                                <h6 class="card-title">Bubur Ikan Bilis</h6>
-                                <small class="text-muted" style="font-size: 0.9rem;">RM 3.00</small>
+                            <form method="get" action="item01.html">
+                                <input type="hidden" name="item" value="Bubur Sup Tulang" >
+                                <input type="hidden" name="price" value="3.50" >
+                                <input type="hidden" name="image" value="sources/buburayam.png" >
+                                <input type="hidden" name="weight" value="40g" >
+                                <h2 class="burger-title">Bubur Sup Tulang</h2>
+                                <p class="burger-price">RM 3.50</p>
+                                <p class="burger-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p></a>
+                                <button type="submit" class="add-button">+</button></form>
+                        </div>
+
+                        <div class="menu-item"><a type="submit">
+                            <div class="burger-image-container">
+                                <img src="sources/buburbilis.png" alt="Beef Burger" class="burger-image">
                             </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3 mb-4">
-                        <a href="item07.html" class="card shadow-sm text-decoration-none text-dark w3-round-xxlarge">
-                            <img src="sources/buburayam.png" class="card-img-top enlarge-image" alt="Product Image">
                             <small class="w3-padding w3-display-right text-muted">40g</small>
-                            <div class="card-body">
-                                <h6 class="card-title">Bubur Sup Tulang</h6>
-                                <small class="text-muted" style="font-size: 0.9rem;">RM 3.00</small>
-                            </div>
-                        </a>
+                            <form method="get" action="item01.html">
+                                <input type="hidden" name="item" value="Bubur Ikan Bilis" >
+                                <input type="hidden" name="price" value="3.50" >
+                                <input type="hidden" name="image" value="sources/buburbilis.png" >
+                                <input type="hidden" name="weight" value="40g" >
+                                <h2 class="burger-title">Bubur Ikan Bilis</h2>
+                                <p class="burger-price">RM 3.50</p>
+                                <p class="burger-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p></a>
+                                <button type="submit" class="add-button">+</button></form>
+                        </div>
                     </div>
-                    <div class="col-md-3 mb-4">
-                        <a href="item08.html" class="card shadow-sm text-decoration-none text-dark w3-round-xxlarge">
-                            <img src="sources/buburasam.png" class="card-img-top enlarge-image" alt="Product Image">
-                            <small class="w3-padding w3-display-right text-muted">40g</small>
-                            <div class="card-body">
-                                <h6 class="card-title">Bubur Ayam</h6>
-                                <small class="text-muted" style="font-size: 0.9rem;">RM 3.00</small>
-                            </div>
-                        </a>
-                    </div>
+
                 </div>
             </div>
             
 
             <!-- Drinks Tab -->
             <div class="tab-pane fade" id="drinks" role="tabpanel">
-            <div class="row mt-4">
-                <div class="col-md-3 mb-4">
-                <a href="item05.html" class="card shadow-sm text-decoration-none text-dark w3-round-xxlarge">
-                    <img src="sources/buburcendawan.png" class="card-img-top enlarge-image" alt="Product Image">
-                    <small class="w3-padding w3-display-right text-muted">40g</small>
-                    <div class="card-body">
-                    <h6 class="card-title">Bubur Cendawan</h6>
-                    <small class="text-muted" style="font-size: 0.9rem;">RM 3.00</small>
+                <div class="tab-pane fade show active" id="food" role="tabpanel">
+                    <div class="row mt-4">
+                        <div class="menu-container">
+                            <div class="menu-item"><a href="item01.html">
+                                <div class="drink-image-container">
+                                    <img src="sources/soyakotak.png" alt="" class="drink-image card-img-top">
+                                </div>
+                                <small class="w3-padding w3-display-right text-muted">250ml</small>
+                                <h2 class="burger-title">Yeo's Soya</h2>
+                                <p class="burger-price">RM 3.50</p>
+                                <p class="burger-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p></a>
+                                <!--<button class="add-button">+</button>-->
+                            </div>
+                            
+                            <div class="menu-item"><a href="item02.html"></a>
+                                <div class="drink-image-container">
+                                    <img src="sources/tehkotak.png" alt="Beef Burger" class="drink-image">
+                                </div>
+                                <small class="w3-padding w3-display-right text-muted">250ml</small>
+                                <h2 class="burger-title">Yeo's Teh<br>Bunga</h2>
+                                <p class="burger-price">RM 3.50</p>
+                                <p class="burger-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p></a>
+                                <!--<button class="add-button">+</button>-->
+                            </div>
+    
+                            <div class="menu-item"><a href="item03.html">
+                                <div class="drink-image-container">
+                                    <img src="sources/lycheekotak.png" alt="Beef Burger" class="drink-image">
+                                </div>
+                                <small class="w3-padding w3-display-right text-muted">250ml</small>
+                                <h2 class="burger-title">Yeo's Lychee</h2>
+                                <p class="burger-price">RM 3.50</p>
+                                <p class="burger-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p></a>
+                                <!--<button class="add-button">+</button>-->
+                            </div>
+                        </div>
+    
                     </div>
-                </a>
                 </div>
-                <!-- Add other drink items here -->
             </div>
-            </div>
+            
         </div>
 
         <!-- Add Bootstrap JavaScript -->
