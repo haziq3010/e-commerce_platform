@@ -364,14 +364,34 @@
                             <p class="section-title">Cara Pembayaran<br><small><i>Jenis pembayaran hanya melalui e-wallet sahaja.</i></small></p>
                             <div class="row mb-3 w3-margin-left">
                                 <div class="col-md-6 form-check">
-                                    <input class="form-check-input" type="radio" name="payment" id="paymentCash" value="cash" onclick="updateBuyButton()">
+                                    <input class="form-check-input" type="radio" name="payment" id="paymentCash" value="cash" onclick="togglePaymentOptions()">
                                     <label class="form-check-label" for="paymentCash"> Cash</label>
                                 </div>
                                 <div class="col-md-6 form-check">
-                                    <input class="form-check-input" type="radio" name="payment" id="paymentEWallet" value="e_wallet" onclick="updateBuyButton()" checked>
+                                    <input class="form-check-input" type="radio" name="payment" id="paymentEWallet" value="e_wallet" onclick="togglePaymentOptions()" checked>
                                     <label class="form-check-label" for="paymentEWallet"> E-Wallet</label>
                                 </div>
+                                <div id="eWalletOptions" class="col-12 mt-3">
+                                    <img src="sources/QRCode.jpg" alt="QR Code" style="width:200px;">
+                                    <input type="file" class="form-control mt-2" id="paymentProof" accept="image/*" required>
+                                </div>
                             </div>
+
+                            <script>
+                                function togglePaymentOptions() {
+                                    const eWalletOptions = document.getElementById('eWalletOptions');
+                                    const paymentProof = document.getElementById('paymentProof');
+                                    if (document.getElementById('paymentEWallet').checked) {
+                                        eWalletOptions.style.display = 'block';
+                                        paymentProof.required = true;
+                                    } else {
+                                        eWalletOptions.style.display = 'none';
+                                        paymentProof.required = false;
+                                    }
+                                }
+                                // Initialize on page load
+                                togglePaymentOptions();
+                            </script></div>
                             
                             <hr>
                             
