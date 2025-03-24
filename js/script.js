@@ -1,4 +1,3 @@
-document.getElementById('buyButton').disabled = true;
 
 
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzV37FA6LpNsa5NbAPEuLOLtEuD2BKLoBUodhbNjUiZOqHjzf6fSus6BeTtDOgull6M/exec';
