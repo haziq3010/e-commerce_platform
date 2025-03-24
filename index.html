@@ -9,201 +9,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/w3-css/4.1.0/w3.min.css">
     <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css" />
     
-    <title>E-commerce Platform</title>
+    <title>AF Platform</title>
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="height: 14vh; position: sticky; top: 0; z-index: 1020;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm" style="height: 14vh; position: sticky; top: 0; z-index: 998; border-bottom: 1px solid #dee2e6;">
             <div class="container-fluid" style="width: 130vh;">
-                <a class="navbar-brand mx-auto" style="font-size: 2rem;" href="#">E-commerce Platform</a>
-                <btn class="btn btn-outline-success" type="button">Login</btn>
+                <a class="navbar-brand mx-auto" style="font-size: 2rem;" href="index.html">AF Shopping Platform</a>
             </div>
         </nav>
     </header>
 
-    <style>
-        button{
-            width: 100%;
-        }
-        a {
-            text-decoration: none;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-       
-        .menu-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            max-width: 1200px;
-        }
-        
-        .menu-item {
-            background-color: white;
-            border-radius: 10px;
-            padding: 20px;
-            width: 250px;
-            text-align: center;
-            position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            padding-top: 140px; /* Space for the image */
-            margin-top: 140px; /* Offset for the image */
-        }
-        
-        .menu-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .burger-image-container {
-            position: absolute;
-            top: -140px;
-            left: 0;
-            width: 100%;
-            height: 280px;
-            display: flex;
-            justify-content: center;
-            overflow: visible;
-        }
-        
-        .burger-image {
-            width: 350px;
-            height: 350px;
-            object-fit: contain;
-            transition: transform 0.3s ease;
-        }
-
-        .drink-image-container {
-            position: absolute;
-            top: -140px;
-            left: 0;
-            width: 100%;
-            height: 280px;
-            display: flex;
-            justify-content: center;
-            overflow: visible;
-        }
-        
-        .drink-image {
-            width: 300px;
-            height: 300px;
-            object-fit: contain;
-            transition: transform 0.3s ease;
-        }
-        
-        .menu-item:hover .burger-image {
-            transform: translateY(-10px);
-        }
-        
-        .burger-title {
-            font-size: 22px;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        
-        .burger-price {
-            color: #e74c3c;
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        
-        .burger-description {
-            color: #666;
-            font-size: 12px;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
-        
-        .add-button {
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 40px;
-            background-color: #e74c3c;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            font-size: 24px;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-        
-        .add-button:hover {
-            background-color: #c0392b;
-            transform: translateX(-50%) scale(1.1);
-        }
-        
-        /* Responsive adjustments */
-        @media (max-width: 1200px) {
-            .menu-item {
-                width: calc(33.33% - 30px);
-            }
-        }
-        
-        @media (max-width: 900px) {
-            .menu-item {
-                width: calc(50% - 30px);
-            }
-        }
-        
-        @media (max-width: 600px) {
-            .menu-item {
-                width: 100%;
-            }
-        }
-        /* Tab navigation styling */
-        .nav-tabs {
-            border: none;
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        
-        .nav-tabs .nav-item {
-            margin: 0 10px;
-        }
-        
-        .nav-tabs .nav-link {
-            border: none;
-            background-color: #f8f9fa;
-            color: #777;
-            font-weight: 600;
-            padding: 12px 25px;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-tabs .nav-link:hover {
-            background-color: #e74c3c;
-            color: white;
-            transform: translateY(-3px);
-        }
-        
-        .nav-tabs .nav-link.active {
-            background-color: #e74c3c;
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
-        }
-    
-    </style>
 </head>
 
 <body>
     
-    <div class="body container mt-4 bg-light" style="width: 140vh;">
+    <div class="container mt-4 bg-light pb-5" style="width: 140vh;">
 
         <!-- Nav tabs -->
         <ul class="nav nav-tabs pt-3" id="productTabs" role="tablist">
@@ -232,114 +54,114 @@
                 <div class="row mt-4">
                     <div class="menu-container">
                         <div class="menu-item"><a type="submit">
-                            <div class="burger-image-container">
-                                <img src="sources/nasilemak.png" alt="" class="burger-image card-img-top">
+                            <div class="food-image-container">
+                                <img src="sources/nasilemak.png" alt="" class="food-image card-img-top">
                             </div>
                             <small class="w3-padding w3-display-right text-muted">90g</small>
-                            <form method="get" action="item01.html">
+                            <form method="get" action="items.html">
                                 <input type="hidden" name="item" value="Nasi Segera (Nasi Lemak)" >
                                 <input type="hidden" name="price" value="3.50" >
                                 <input type="hidden" name="image" value="sources/nasilemak.png" >
                                 <input type="hidden" name="weight" value="90g" >
-                                <h2 class="burger-title">Nasi Segera<br>(Nasi Lemak)</h2>
-                                <p class="burger-price">RM 3.50</p>
-                                <p class="burger-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p></a>
+                                <h2 class="food-title">Nasi Segera<br>(Nasi Lemak)</h2>
+                                <p class="food-price">RM 3.50</p>
+                                <p class="food-description">Nasi lemak segera dengan sambal berlemak</p></a>
                                 <button type="submit" class="add-button">+</button></form>
                         </div>
                         
                         <div class="menu-item"><a type="submit"></a>
-                            <div class="burger-image-container">
-                                <img src="sources/nasikari.png" alt="Beef Burger" class="burger-image">
+                            <div class="food-image-container">
+                                <img src="sources/nasikari.png" alt="Beef food" class="food-image">
                             </div>
                             <small class="w3-padding w3-display-right text-muted">90g</small>
-                            <form method="get" action="item01.html">
+                            <form method="get" action="items.html">
                                 <input type="hidden" name="item" value="Nasi Segera (Kari Ayam)" >
                                 <input type="hidden" name="price" value="3.50" >
                                 <input type="hidden" name="image" value="sources/nasikari.png" >
                                 <input type="hidden" name="weight" value="90g" >
-                                <h2 class="burger-title">Nasi Segera<br>(Kari Ayam)</h2>
-                                <p class="burger-price">RM 3.50</p>
-                                <p class="burger-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p></a>
+                                <h2 class="food-title">Nasi Segera<br>(Kari Ayam)</h2>
+                                <p class="food-price">RM 3.50</p>
+                                <p class="food-description">Nasi segera dengan kari ayam dan hirisan ayam</p></a>
                                 <button type="submit" class="add-button">+</button></form>
                         </div>
 
                         <div class="menu-item"><a type="submit">
-                            <div class="burger-image-container">
-                                <img src="sources/nasiasam.png" alt="Beef Burger" class="burger-image">
+                            <div class="food-image-container">
+                                <img src="sources/nasiasam.png" alt="Beef food" class="food-image">
                             </div>
                             <small class="w3-padding w3-display-right text-muted">90g</small>
-                            <form method="get" action="item01.html">
+                            <form method="get" action="items.html">
                                 <input type="hidden" name="item" value="Nasi Segera (Asam Pedas)" >
                                 <input type="hidden" name="price" value="3.50" >
                                 <input type="hidden" name="image" value="sources/nasiasam.png" >
                                 <input type="hidden" name="weight" value="90g" >
-                                <h2 class="burger-title">Nasi Segera<br>(Asam Pedas)</h2>
-                                <p class="burger-price">RM 3.50</p>
-                                <p class="burger-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p></a>
+                                <h2 class="food-title">Nasi Segera<br>(Asam Pedas)</h2>
+                                <p class="food-price">RM 3.50</p>
+                                <p class="food-description">Nasi segera dengan sos asam pedas dan ikan</p></a>
                                 <button type="submit" class="add-button">+</button></form>
                         </div>
 
-                        <div class="menu-item"><a type="submit">
-                            <div class="burger-image-container">
-                                <img src="sources/buburudang.png" alt="Beef Burger" class="burger-image">
+                        <div class="menu-item unavailable"><a type="submit">
+                            <div class="food-image-container">
+                                <img src="sources/buburudang.png" alt="Beef food" class="food-image">
                             </div>
                             <small class="w3-padding w3-display-right text-muted">40g</small>
-                            <form method="get" action="item01.html">
+                            <form method="get" action="items.html">
                                 <input type="hidden" name="item" value="Bubur Udang" >
                                 <input type="hidden" name="price" value="3.50" >
                                 <input type="hidden" name="image" value="sources/buburudang.png" >
                                 <input type="hidden" name="weight" value="40g" >
-                                <h2 class="burger-title">Bubur Udang</h2>
-                                <p class="burger-price">RM 3.50</p>
-                                <p class="burger-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p></a>
+                                <h2 class="food-title">Bubur Udang</h2>
+                                <p class="food-price">RM 3.50</p>
+                                <p class="food-description">Bubur segera perisa udang</p></a>
                                 <button type="submit" class="add-button">+</button></form>
                         </div>
 
-                        <div class="menu-item"><a type="submit">
-                            <div class="burger-image-container">
-                                <img src="sources/buburcendawan.png" alt="Beef Burger" class="burger-image">
+                        <div class="menu-item unavailable"><a type="submit">
+                            <div class="food-image-container">
+                                <img src="sources/buburcendawan.png" alt="Beef food" class="food-image">
                             </div>
                             <small class="w3-padding w3-display-right text-muted">40g</small>
-                            <form method="get" action="item01.html">
+                            <form method="get" action="items.html">
                                 <input type="hidden" name="item" value="Bubur Cendawan" >
                                 <input type="hidden" name="price" value="3.50" >
                                 <input type="hidden" name="image" value="sources/buburcendawan.png" >
                                 <input type="hidden" name="weight" value="40g" >
-                                <h2 class="burger-title">Bubur Cendawan</h2>
-                                <p class="burger-price">RM 3.50</p>
-                                <p class="burger-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p></a>
+                                <h2 class="food-title">Bubur Cendawan</h2>
+                                <p class="food-price">RM 3.50</p>
+                                <p class="food-description">Bubur segera perisa cendawan</p></a>
                                 <button type="submit" class="add-button">+</button></form>
                         </div>
 
-                        <div class="menu-item"><a type="submit">
-                            <div class="burger-image-container">
-                                <img src="sources/buburayam.png" alt="Beef Burger" class="burger-image">
+                        <div class="menu-item unavailable"><a type="submit">
+                            <div class="food-image-container">
+                                <img src="sources/buburayam.png" alt="Beef food" class="food-image">
                             </div>
                             <small class="w3-padding w3-display-right text-muted">40g</small>
-                            <form method="get" action="item01.html">
+                            <form method="get" action="items.html">
                                 <input type="hidden" name="item" value="Bubur Sup Tulang" >
                                 <input type="hidden" name="price" value="3.50" >
                                 <input type="hidden" name="image" value="sources/buburayam.png" >
                                 <input type="hidden" name="weight" value="40g" >
-                                <h2 class="burger-title">Bubur Sup Tulang</h2>
-                                <p class="burger-price">RM 3.50</p>
-                                <p class="burger-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p></a>
+                                <h2 class="food-title">Bubur Sup Tulang</h2>
+                                <p class="food-price">RM 3.50</p>
+                                <p class="food-description">Bubur segera perisa sup tulang</p></a>
                                 <button type="submit" class="add-button">+</button></form>
                         </div>
 
-                        <div class="menu-item"><a type="submit">
-                            <div class="burger-image-container">
-                                <img src="sources/buburbilis.png" alt="Beef Burger" class="burger-image">
+                        <div class="menu-item unavailable"><a type="submit">
+                            <div class="food-image-container">
+                                <img src="sources/buburbilis.png" alt="Beef food" class="food-image">
                             </div>
                             <small class="w3-padding w3-display-right text-muted">40g</small>
-                            <form method="get" action="item01.html">
+                            <form method="get" action="items.html">
                                 <input type="hidden" name="item" value="Bubur Ikan Bilis" >
                                 <input type="hidden" name="price" value="3.50" >
                                 <input type="hidden" name="image" value="sources/buburbilis.png" >
                                 <input type="hidden" name="weight" value="40g" >
-                                <h2 class="burger-title">Bubur Ikan Bilis</h2>
-                                <p class="burger-price">RM 3.50</p>
-                                <p class="burger-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p></a>
+                                <h2 class="food-title">Bubur Ikan Bilis</h2>
+                                <p class="food-price">RM 3.50</p>
+                                <p class="food-description">Bubur segera perisa ikan bilis</p></a>
                                 <button type="submit" class="add-button">+</button></form>
                         </div>
                     </div>
@@ -353,36 +175,36 @@
                 <div class="tab-pane fade show active" id="food" role="tabpanel">
                     <div class="row mt-4">
                         <div class="menu-container">
-                            <div class="menu-item"><a href="item01.html">
+                            <div class="menu-item comingsoon"><a href="items.html">
                                 <div class="drink-image-container">
                                     <img src="sources/soyakotak.png" alt="" class="drink-image card-img-top">
                                 </div>
                                 <small class="w3-padding w3-display-right text-muted">250ml</small>
-                                <h2 class="burger-title">Yeo's Soya</h2>
-                                <p class="burger-price">RM 3.50</p>
-                                <p class="burger-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p></a>
+                                <h2 class="food-title">Yeo's Soya</h2>
+                                <p class="food-price">RM 3.50</p>
+                                <p class="food-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p></a>
                                 <!--<button class="add-button">+</button>-->
                             </div>
                             
-                            <div class="menu-item"><a href="item02.html"></a>
+                            <div class="menu-item comingsoon"><a href="item02.html"></a>
                                 <div class="drink-image-container">
-                                    <img src="sources/tehkotak.png" alt="Beef Burger" class="drink-image">
+                                    <img src="sources/tehkotak.png" alt="Beef food" class="drink-image">
                                 </div>
                                 <small class="w3-padding w3-display-right text-muted">250ml</small>
-                                <h2 class="burger-title">Yeo's Teh<br>Bunga</h2>
-                                <p class="burger-price">RM 3.50</p>
-                                <p class="burger-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p></a>
+                                <h2 class="food-title">Yeo's Teh<br>Bunga</h2>
+                                <p class="food-price">RM 3.50</p>
+                                <p class="food-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p></a>
                                 <!--<button class="add-button">+</button>-->
                             </div>
     
-                            <div class="menu-item"><a href="item03.html">
+                            <div class="menu-item comingsoon"><a href="item03.html">
                                 <div class="drink-image-container">
-                                    <img src="sources/lycheekotak.png" alt="Beef Burger" class="drink-image">
+                                    <img src="sources/lycheekotak.png" alt="Beef food" class="drink-image">
                                 </div>
                                 <small class="w3-padding w3-display-right text-muted">250ml</small>
-                                <h2 class="burger-title">Yeo's Lychee</h2>
-                                <p class="burger-price">RM 3.50</p>
-                                <p class="burger-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p></a>
+                                <h2 class="food-title">Yeo's Lychee</h2>
+                                <p class="food-price">RM 3.50</p>
+                                <p class="food-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p></a>
                                 <!--<button class="add-button">+</button>-->
                             </div>
                         </div>
@@ -390,15 +212,14 @@
                     </div>
                 </div>
             </div>
-            <!--Cart-->
-            <div class="tab-pane fade" id="drinks" role="tabpanel">
-                <div class="tab-pane fade show active" id="food" role="tabpanel">
-                    <div class="row mt-4">
-                        <div class="menu-container">
-                        </div>
-                    </div>
+            <!-- Cart -->
+            <div class="tab-pane fade" id="cart" role="tabpanel">
+                <div class="text-center py-5">
+                    <i class="bi bi-exclamation-circle text-warning" style="font-size: 4rem;"></i>
+                    <h3 class="mt-3">Cart Feature Not Available</h3>
+                    <p class="text-muted">This feature is currently under development. Please check back later.</p>
                 </div>
-            <
+            </div>
             
         </div>
 
@@ -406,14 +227,18 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     </div>
 
-    <style>
-    .enlarge-image {
-        transition: transform 0.2s;
-    }
-
-    .enlarge-image:hover {
-        transform: scale(1.2);
-    }
-    </style>
 </body>
+<footer class="mt-5">
+    <div class="container-fluid bg-light py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <img src="sources/ابيفيوان.png" alt="" style="width:200px">
+                    <p class="text-muted mb-1">© 2025 AF Studios. All rights reserved.</p>
+                    <small class="text-muted">Made with <i class="bi bi-heart-fill text-danger"></i> for our customers</small>
+                </div>
+            </div>  
+        </div>
+    </div>
+</footer>
 </html></html>

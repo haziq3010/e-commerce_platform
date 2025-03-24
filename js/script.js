@@ -1,4 +1,4 @@
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyaO4B6SptuLKknCkW-TSAcXimfjMq6FyvuAOV-xVO0c-nsSySwc0TtrZLyiEQuiWpK/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzV37FA6LpNsa5NbAPEuLOLtEuD2BKLoBUodhbNjUiZOqHjzf6fSus6BeTtDOgull6M/exec';
 
 document.getElementById('orderForm').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -7,8 +7,28 @@ document.getElementById('orderForm').addEventListener('submit', async (e) => {
     const originalButtonText = buyButton.innerText;
     buyButton.innerText = 'Please wait...';
     buyButton.disabled = true;
-    
+
     const roomNumber = document.getElementById('roomNumber').value;
+    const fileInput = document.getElementById('paymentProof');
+
+    // Function to read the file and get Base64 data
+    const getImageData = () => {
+        return new Promise((resolve, reject) => {
+            const file = fileInput.files[0]; // Get the first selected file
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => resolve(e.target.result); // Base64-encoded data URL
+                reader.onerror = (error) => reject(error); // Handle error
+                reader.readAsDataURL(file); // Convert file to Data URL
+            } else {
+                resolve('None'); // Default value if no file is uploaded
+            }
+        });
+    };
+
+try {
+    const imageData = await getImageData(); // Wait for image data
+
     const orderData = {
         name: document.getElementById('customerName').value,
         phoneNumber: document.getElementById('phoneNumber').value,
@@ -19,14 +39,19 @@ document.getElementById('orderForm').addEventListener('submit', async (e) => {
         deliveryType: document.querySelector('input[name="delivery"]:checked').value,
         paymentType: document.querySelector('input[name="payment"]:checked').value,
         room: roomNumber.trim() === '' ? 'None' : roomNumber,
-        action: 'placeOrder'
+        ewallet: imageData, // Base64-encoded payment proof
+        action: 'placeOrder',
     };
 
-try {
     const response = await fetch(SCRIPT_URL, {
         method: 'POST',
         body: JSON.stringify(orderData)
     });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
     
     document.getElementById('message').textContent = "Order placed successfully!";
     document.getElementById('orderForm').reset();
@@ -178,3 +203,16 @@ function changeImage(imageSrc) {
             }
         }
     
+        function togglePaymentOptions() {
+            const eWalletOptions = document.getElementById('eWalletOptions');
+            const paymentProof = document.getElementById('paymentProof');
+            if (document.getElementById('paymentEWallet').checked) {
+                eWalletOptions.style.display = 'block';
+                paymentProof.required = true;
+            } else {
+                eWalletOptions.style.display = 'none';
+                paymentProof.required = false;
+            }
+        }
+        // Initialize on page load
+        togglePaymentOptions();

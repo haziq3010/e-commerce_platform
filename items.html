@@ -5,258 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet">
+    <link rel="stylesheet" href="css/items.css" />
     
-    <title>E-commerce Platform</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-        
-        body {
-            background-color: #f7f7f7;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .back-button-top-left {
-            background-color: white;
-            color: #333;
-            padding: 8px 15px;
-            margin-bottom: 15px;
-            display: inline-block;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .back-button-top-left:hover {
-            background-color: #e74c3c;
-            color: white;
-            transform: translateX(-5px);
-        }
-        
-        .main-container {
-            background-color: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease;
-        }
-        
-        .main-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-        }
-        
-        .product-image-container {
-            position: relative;
-            overflow: hidden;
-            padding: 20px;
-        }
-        
-        .enlarge-image {
-            transform-origin: center;
-            transition: transform 0.3s ease;
-            width: 100%;
-            height: auto;
-            margin-top: -40px;
-        }
-        
-        .enlarge-image:hover {
-            transform: scale(1.05);
-        }
-        
-        .thumbnail-container {
-            margin-top: 15px;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .img-thumbnail {
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 10px;
-        }
-        
-        .img-thumbnail:hover {
-            transform: scale(1.1);
-            border-color: #e74c3c;
-        }
-        
-        .product-details-container {
-            padding: 20px;
-        }
-        
-        .product-title {
-            background-color: white;
-            padding: 15px;
-            border-radius: 15px;
-            margin-bottom: 15px;
-            font-weight: bold;
-            color: #e74c3c;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-        
-        .product-title:hover {
-            transform: translateY(-3px);
-        }
-        
-        .details-section {
-            background-color: white;
-            padding: 15px;
-            border-radius: 15px;
-            margin-bottom: 15px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-        }
-        
-        .section-title {
-            color: #777;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        
-        .form-control {
-            border-radius: 10px;
-            padding: 10px 15px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            transition: all 0.3s ease;
-        }
-        
-        .form-control:focus {
-            border-color: #e74c3c;
-            box-shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.25);
-        }
-        
-        .form-check-input {
-            cursor: pointer;
-        }
-        
-        .form-check-input:checked {
-            background-color: #e74c3c;
-            border-color: #e74c3c;
-        }
-        
-        .quantity-control {
-            display: flex;
-            align-items: center;
-        }
-        
-        .quantity-btn {
-            background-color: #f8f9fa;
-            border: 1px solid #ddd;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 8px;
-        }
-        
-        .quantity-btn:hover {
-            background-color: #e74c3c;
-            color: white;
-        }
-        
-        #quantity {
-            width: 60px;
-            height: 40px;
-            text-align: center;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            margin: 0 10px;
-            font-weight: bold;
-        }
-        
-        .buy-btn {
-            background-color: #e74c3c;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-size: 18px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            font-weight: bold;
-        }
-        
-        .buy-btn:hover {
-            background-color: #c0392b;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        hr {
-            border-top: 1px solid #eee;
-            margin: 15px 0;
-        }
-        /* Popup styles */
-        .success-popup {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .popup-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Confetti styles */
-        .confetti-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1001;
-            pointer-events: none;
-        }
-
-        .confetti {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #f00;
-            top: -10px;
-            animation: fall linear forwards;
-        }
-
-        @keyframes fall {
-        to {
-            transform: translateY(100vh) rotate(720deg);
-            opacity: 0;
-        }
-        }
-    </style>
+    <title>AF Platform</title>
+   
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="height: 14vh; position: sticky; top: 0; z-index: 1020;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm" style="height: 14vh; position: sticky; top: 0; z-index: 998; border-bottom: 1px solid #dee2e6;">
             <div class="container-fluid" style="width: 130vh;">
-                <a class="navbar-brand mx-auto" style="font-size: 2rem;" href="#">Nasi Segera (Nasi Lemak)</a>
-                <btn class="btn btn-outline-success" type="button">Login</btn>
+                <a class="navbar-brand mx-auto" style="font-size: 2rem;" href="index.html">AF Shopping Platform</a>
             </div>
         </nav>
     </header>
+
 
 </head>
 <body>
@@ -265,7 +28,7 @@
     
     <div class="container mt-2" style="max-width: 1000px;">
         <a href="index.html" class="back-button-top-left">
-            <i class="bi bi-chevron-left"></i> Kembali
+            <i class="bi bi-arrow-left-short" style="font-size: 1rem;"></i> Kembali
         </a>
         
         <div class="main-container">
@@ -315,7 +78,14 @@
                                     <input type="text" class="form-control" id="customerName" placeholder="Nama" required>
                                 </div>
                                 <div class="col-12">
-                                    <input type="tel" class="form-control" id="phoneNumber" placeholder="No. Telefon" required>
+                                    <input type="tel" class="form-control" id="phoneNumber" 
+                                           pattern="[0-9]{10,11}" 
+                                           title="Please enter a valid phone number (10-11 digits)"
+                                           placeholder="No. Telefon (e.g., 0123456789)" 
+                                           maxlength="11"
+                                           oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                           required>
+                                    <small class="text-muted">Phone number must be 10-11 digits without spaces or special characters</small>
                                 </div>
                             </div>
                             
@@ -336,7 +106,10 @@
                             
                             <hr>
                             
-                            <p>Pilih Penghantaran</p>
+                            <p>Pilih Penghantaran <i class="bi bi-info-circle text-primary" 
+                               data-bs-toggle="tooltip" 
+                               data-bs-placement="right"
+                               title="Pickup Standard: K204 | Pickup Sutera: Depan Pejabat Kolej"></i></p>
                             <div class="row mb-3 w3-margin-left">
                                 <div class="col-md-6 form-check">
                                     <input class="form-check-input" type="radio" name="delivery" id="pickupStandard" value="pickup" onclick="updateBuyButton(); toggleRoomNumber()" checked>
@@ -348,14 +121,17 @@
                                 </div>
                                 <div class="col-md-6 form-check">
                                     <input class="form-check-input" type="radio" name="delivery" id="deliveryStandard" value="delivery" onclick="updateBuyButton(); toggleRoomNumber()">
-                                    <label class="form-check-label" for="deliveryStandard"> Penghantaran</label>
+                                    <label class="form-check-label" for="deliveryStandard"> Penghantaran (+RM1/item)</label>
                                 </div>
                                 <div class="col-md-6 form-check">
-                                    <input class="form-check-input" type="radio" name="delivery" id="deliverySutera" value="delivery_sutera" onclick="updateBuyButton(); toggleRoomNumber()">
-                                    <label class="form-check-label" for="deliverySutera"> Penghantaran Sutera (+RM1/item)</label>
+                                    <input class="form-check-input" type="radio" name="delivery" id="deliverySutera" value="delivery_sutera" onclick="updateBuyButton(); toggleRoomNumber()" disabled>
+                                    <label class="form-check-label" for="deliverySutera"> Penghantaran Sutera (+RM2/item)</label>
                                 </div>
                                 <div id="roomNumberDiv" class="col-12 mt-2" style="display: none;">
-                                    <input type="text" class="form-control" id="roomNumber" placeholder="Room Number">
+                                    <div class="input-group" style="height: 38px;">
+                                        <span class="input-group-text h-100">Kasa</span>
+                                        <input type="text" class="form-control h-100" id="roomNumber" placeholder="Room Number">
+                                    </div>
                                 </div>
                             </div>
                             
@@ -374,25 +150,11 @@
                                 <div id="eWalletOptions" class="col-12 mt-3">
                                     <img src="sources/QRCode.jpg" alt="QR Code" style="width:200px;">
                                     <input type="file" class="form-control mt-2" id="paymentProof" accept="image/*" required>
+                                    <small class="text-muted">Upload the receipt here</small>
+
                                 </div>
                             </div>
 
-                            <script>
-                                function togglePaymentOptions() {
-                                    const eWalletOptions = document.getElementById('eWalletOptions');
-                                    const paymentProof = document.getElementById('paymentProof');
-                                    if (document.getElementById('paymentEWallet').checked) {
-                                        eWalletOptions.style.display = 'block';
-                                        paymentProof.required = true;
-                                    } else {
-                                        eWalletOptions.style.display = 'none';
-                                        paymentProof.required = false;
-                                    }
-                                }
-                                // Initialize on page load
-                                togglePaymentOptions();
-                            </script></div>
-                            
                             <hr>
                             
                             <div class="row">
@@ -417,4 +179,17 @@
                 
     <script src="js/script.js"></script>
 </body>
+<footer class="mt-5">
+    <div class="container-fluid bg-light py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <img src="sources/ابيفيوان.png" alt="" style="width:200px">
+                    <p class="text-muted mb-1">© 2025 AF Studios. All rights reserved.</p>
+                    <small class="text-muted">Made with <i class="bi bi-heart-fill text-danger"></i> for our customers</small>
+                </div>
+            </div>  
+        </div>
+    </div>
+</footer>
 </html>
